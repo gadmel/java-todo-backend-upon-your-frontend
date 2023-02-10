@@ -2,9 +2,7 @@ package com.example.backend.model;
 
 import lombok.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class Todo {
 	private String id;
 	private String description;
