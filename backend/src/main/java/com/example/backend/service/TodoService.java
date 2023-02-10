@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.example.backend.repository.TodoRepo;
 import com.example.backend.model.Todo;
@@ -22,7 +23,9 @@ public class TodoService {
 	}
 
 	public Todo postTodo(Todo incomingTodo) {
-		return todoRepo.postTodo(incomingTodo);
+		String randomId = UUID.randomUUID().toString();
+		Todo outgoingTodo = incomingTodo.attachId(randomId);
+		return todoRepo.postTodo(outgoingTodo);
 	}
 
 	public Todo updateTodo(String id, Todo incomingTodo) {
