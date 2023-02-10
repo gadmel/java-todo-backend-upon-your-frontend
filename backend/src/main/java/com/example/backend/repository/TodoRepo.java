@@ -4,11 +4,12 @@ import com.example.backend.model.Todo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Repository
 public class TodoRepo {
 
-	private List<Todo> todos;
+	private final List<Todo> todos = new ArrayList<>() {};
 
 	public List<Todo> getTodos() {
 		return todos;

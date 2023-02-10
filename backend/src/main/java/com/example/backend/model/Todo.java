@@ -2,7 +2,6 @@ package com.example.backend.model;
 
 import lombok.*;
 
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -16,8 +15,8 @@ public class Todo {
 		this.status = status;
 	}
 
-	public Todo attachId(String randomId) {
-		this.setId(randomId);
+	public Todo attachId(String incomingId) {
+		this.setId(incomingId);
 		return this;
 	}
 

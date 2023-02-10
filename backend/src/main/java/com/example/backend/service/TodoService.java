@@ -12,7 +12,7 @@ import com.example.backend.model.Todo;
 @Service
 @RequiredArgsConstructor
 public class TodoService {
-	private TodoRepo todoRepo;
+	private final TodoRepo todoRepo;
 
 	public List<Todo> getTodos() {
 		return todoRepo.getTodos();

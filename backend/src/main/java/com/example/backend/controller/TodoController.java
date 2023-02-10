@@ -14,7 +14,7 @@ import com.example.backend.service.TodoService;
 @RequiredArgsConstructor
 public class TodoController {
 
-	private TodoService todoService;
+	private final TodoService todoService;
 
 	@GetMapping("")
 	public List<Todo> getTodos() {
@@ -31,12 +31,12 @@ public class TodoController {
 		return todoService.postTodo(incomingTodo);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("{id}")
 	public Todo updateTodo(@PathVariable String id, @RequestBody Todo incomingTodo) {
 		return todoService.updateTodo(id, incomingTodo);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("{id}")
 	public void deleteTodo(@PathVariable String id) {
 		todoService.deleteTodo(id);
 	}
