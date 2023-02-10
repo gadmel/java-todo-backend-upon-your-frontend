@@ -2,12 +2,7 @@ package com.example.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +29,11 @@ public class TodoController {
 	@PostMapping("")
 	public Todo postTodo(@RequestBody Todo incomingTodo) {
 		return todoService.postTodo(incomingTodo);
+	}
+
+	@PutMapping("/{id}")
+	public Todo updateTodo(@PathVariable String id, @RequestBody Todo incomingTodo) {
+		return todoService.updateTodo(id, incomingTodo);
 	}
 
 }
