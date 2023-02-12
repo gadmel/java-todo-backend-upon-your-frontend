@@ -10,5 +10,4 @@ public class RandomService {
 	public String generateRandomTodoId() {
 		return UUID.randomUUID().toString();
 	}
-	public RandomService() {}
 }

@@ -12,6 +12,11 @@ public class Todo {
 		this.description = description;
 		this.status = status;
 	}
+	public  Todo(String id, String description, Status status) {
+		this.id = id;
+		this.description = description;
+		this.status = status;
+	}
 
 	public Todo attachId(String incomingId) {
 		this.setId(incomingId);

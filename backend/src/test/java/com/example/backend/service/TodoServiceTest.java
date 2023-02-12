@@ -19,8 +19,8 @@ import com.example.backend.model.Todo;
 import com.example.backend.model.Status;
 import com.example.backend.repository.TodoRepo;
 
-@Nested
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Nested
 @DisplayName("TodoService Unit Testing")
 class TodoServiceTest {
 	Todo todoWithoutId_1, todoWithoutId_2, todoWithId_1, todoWithId_2;
@@ -50,7 +50,7 @@ class TodoServiceTest {
 	@Nested
 	class GetTodosTesting {
 
-		@Order(2)
+//		@Order(2)
 		@Test
 		@DirtiesContext
 		@DisplayName("...should return a list of todos if there are todos in the database.")
@@ -63,7 +63,7 @@ class TodoServiceTest {
 			assertEquals(expected, actual);
 		}
 
-		@Order(3)
+//		@Order(3)
 		@Test
 		@DirtiesContext
 		@DisplayName("...should return an empty list of todos if there are no todos in the database.")
@@ -82,7 +82,7 @@ class TodoServiceTest {
 	class GetTodoByIdTesting {
 
 		@Test
-		@Order(5)
+//		@Order(5)
 		@DirtiesContext
 		@DisplayName("...should return null if there is no any to-do with such id in the database.")
 		void getTodoById_whenThereIsNoTodoWithSuchIdInDatabase() {
@@ -95,7 +95,7 @@ class TodoServiceTest {
 		}
 
 		@Test
-		@Order(6)
+//		@Order(6)
 		@DirtiesContext
 		@DisplayName("...should return a to-do with the given id if there is a to-do with such id in the database.")
 		void getTodoById_whenThereIsATodoWithSuchIdInDatabase() {
@@ -117,7 +117,7 @@ class TodoServiceTest {
 	class PostTodoTesting {
 
 		@Test
-		@Order(8)
+//		@Order(8)
 		@DirtiesContext
 		@DisplayName("...should return a to-do with an id if the to-do is successfully added to the database.")
 		void postTodo_shouldReturnATodoWithAnIdIfTheTodoIsSuccessfullyAddedToTheDatabase() {
@@ -139,7 +139,7 @@ class TodoServiceTest {
 	@Nested
 	class UpdateTodoTesting {
 		@Test
-		@Order(10)
+//		@Order(10)
 		@DirtiesContext
 		@DisplayName("...should return an updated to-do if the to-do is successfully updated in the database.")
 		void postTodo_shouldReturnAnUpdatedTodoIfTheTodoIsSuccessfullyUpdatedInTheDatabase() {
@@ -153,7 +153,7 @@ class TodoServiceTest {
 		}
 
 		@Test
-		@Order(11)
+//		@Order(11)
 		@DirtiesContext
 		@DisplayName("...should return null if there is no any to-do with such id in the database.")
 		void postTodo_shouldReturnNullIfThereIsNoAnyTodoWithSuchIdInTheDatabase() {
