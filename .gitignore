@@ -4,3 +4,4 @@
 target
 backend/target
 backend/src/main/resources
+frontend/node_modules
