@@ -13,7 +13,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -103,8 +102,8 @@ class TodoControllerTest {
 
 	@Order(2)
 	@DisplayName("""
- 		req(POST) at "api/todo"
- 		""")
+		req(POST) at "api/todo"
+	""")
 	@Nested
 	class PostTesting {
 
@@ -117,8 +116,13 @@ class TodoControllerTest {
 			//when
 			mockMvc.perform(MockMvcRequestBuilders.post("/api/todo")
 							.contentType(MediaType.APPLICATION_JSON)
-							.content("{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
-					.andExpect(status().isOk())
+							.content("""
+{
+           		"description": "First to-do (without id)",
+           		"status": "OPEN"
+           }
+           """
+				)).andExpect(status().isOk())
 					.andExpect(content().json(	"{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
 					.andExpect(jsonPath("$.id").isNotEmpty());
 		}
@@ -137,32 +141,35 @@ class TodoControllerTest {
 			//given
 			todoRepo.postTodo(todo1);
 			//when
+			System.out.println(todo1.getId());
 			mockMvc.perform(MockMvcRequestBuilders.put("/api/todo/" + todo1.getId())
 							.contentType(MediaType.APPLICATION_JSON)
 							.content("{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
-					.andExpect(status().isOk())
+					.andExpect(status().isOk()).andDo(content -> System.out.println(content.getResponse().getContentAsString()))
 					.andExpect(content().json(	"{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
-					.andExpect(jsonPath("$.id").isNotEmpty());;
+					.andExpect(jsonPath("$.id").isNotEmpty());
 		}
 	}
 
 	@Order(4)
 	@DisplayName("""
  		req(DELETE) at "api/todo"
-	""")
+""")
 	@Nested
 	class DeleteTesting {
 		@Test
 		@DirtiesContext
-		@DisplayName("...should delete a to-do in the database and return the deleted to-do if the to-do is valid.")
+		@DisplayName("...should delete a to-do in the database, return response status 200, and return an empty array on a get request if the deleted to-do was the last to-do in the database.")
 		void getTodos_shouldDeleteATodoInTheDatabaseAndReturnTheDeletedTodoIfTheTodoIsValid() throws Exception {
 			//given
 			todoRepo.postTodo(todo1);
 			//when
 			mockMvc.perform(MockMvcRequestBuilders.delete("/api/todo/" + todo1.getId()))
+					.andExpect(status().isOk());
+
+			mockMvc.perform(MockMvcRequestBuilders.get("/api/todo").contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
-					.andExpect(content().json(	"{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
-					.andExpect(jsonPath("$.id").isNotEmpty());;
+					.andExpect(content().json("[]" ));
 		}
 	}
 

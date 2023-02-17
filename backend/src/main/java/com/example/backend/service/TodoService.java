@@ -29,7 +29,7 @@ public class TodoService {
 	}
 
 	public Todo updateTodo(String id, Todo incomingTodo) {
-		return todoRepo.updateTodo(id, incomingTodo);
+		return todoRepo.updateTodo(id, incomingTodo.attachId(id));
 	}
 
 	public void deleteTodo(String id) {
