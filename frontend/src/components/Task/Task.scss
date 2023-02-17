@@ -1,0 +1,44 @@
+.task {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	background: #fff;
+	border-radius: 1rem;
+	padding-block: 1rem;
+	padding-inline: 1rem;
+	margin-inline: 1rem;
+	margin-block: 0.75rem;
+	font-size: 1.25rem;
+	font-weight: bold;
+	&:hover { outline: #000 solid 2px; }
+
+	&__title {
+		display: flex;
+		align-items: center;
+		font-size: 1.75rem;
+		font-weight: bold;
+	}
+
+	&__description {
+		display: flex;
+		align-items: center;
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
+
+	&__button {
+		display: flex;
+		padding-block: 0.5rem;
+		padding-inline: 1rem;
+		background: #fff;
+		border: #555 solid 2px;
+		border-radius: 0.5rem;
+		align-items: center;
+		font-size: 1.25rem;
+		font-weight: bold;
+		cursor: pointer;
+		&:hover { background: #555555; color: white}
+	}
+
+}

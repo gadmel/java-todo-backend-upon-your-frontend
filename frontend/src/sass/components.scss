@@ -1,1 +1,4 @@
-@use "../components/App/App";
+@use "src/components/App/App";
+@use "src/components/KanbanColumn/KanbanColumn";
+@use "src/components/Task/Task";
+@use "src/components/AddTaskForm/AddTaskForm";

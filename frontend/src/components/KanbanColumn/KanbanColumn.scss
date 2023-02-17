@@ -1,0 +1,45 @@
+.kanban {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	height: 100%;
+	flex-direction: row;
+	width: 100%;
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		margin: 1rem;
+		background: #ddd;
+		border-radius: 1rem;
+		width: 100%;
+		@media (min-width: 1200px) { width: 30%; }
+		height: 30%;
+		@media (min-width: 1200px) { height: 92%; align-self: center; }
+
+		&--title {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			background: #aaa;
+			border-radius: 1rem 1rem 0 0;
+			padding-block: 1rem;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+
+		&--tasks {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+
+		}
+
+
+	}
+
+}
