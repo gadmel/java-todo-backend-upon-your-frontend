@@ -20,7 +20,7 @@ class TodoRepoTest {
 	@DisplayName("TodoRepo.deleteTodo() should delete a to-do with the given id if there is a to-do with such id in the database.")
 	void deleteTodo() {
 		String id = "Unique id string";
-		Todo todo = new Todo( "A to-do (without id)", Status.OPEN);
+		Todo todo = new Todo( "A to-do (without id)","Description", Status.OPEN);
 		todo.attachId(id);
 		todoRepo.postTodo(todo);
 		//when

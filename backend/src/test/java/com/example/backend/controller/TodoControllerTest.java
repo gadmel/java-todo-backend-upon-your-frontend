@@ -32,8 +32,8 @@ class TodoControllerTest {
 
 	@BeforeEach
 	void setUpTesting() {
-		todo1 = new Todo("1", "First to-do (without id)", Status.OPEN);
-		todo2 = new Todo("2", "Second to-do (without id)", Status.OPEN);
+		todo1 = new Todo("1",  Status.OPEN, "First to-do (without id)", "Description");
+		todo2 = new Todo("2", Status.OPEN, "Second to-do (without id)", "Description");
 	}
 
 
@@ -58,12 +58,14 @@ class TodoControllerTest {
 							[
 								{
 									"id": "1",
-									"description": "First to-do (without id)",
+									"title": "First to-do (without id)",
+									"description": "Description",
 									"status": "OPEN"
 								},
 								{
 									"id": "2",
-									"description": "Second to-do (without id)",
+									"title": "Second to-do (without id)",
+									"description": "Description",
 									"status": "OPEN"
 								}
 							]
@@ -82,7 +84,8 @@ class TodoControllerTest {
 					.andExpect(content().json("""
 							{
 								"id": "1",
-								"description": "First to-do (without id)",
+								"title": "First to-do (without id)",
+								"description": "Description",
 								"status": "OPEN"
 							}
 							"""));
@@ -118,8 +121,10 @@ class TodoControllerTest {
 							.contentType(MediaType.APPLICATION_JSON)
 							.content("""
 {
-           		"description": "First to-do (without id)",
+           		"title": "First to-do (without id)",
+           		"description": "Description",
            		"status": "OPEN"
+           		
            }
            """
 				)).andExpect(status().isOk())
@@ -144,9 +149,23 @@ class TodoControllerTest {
 			System.out.println(todo1.getId());
 			mockMvc.perform(MockMvcRequestBuilders.put("/api/todo/" + todo1.getId())
 							.contentType(MediaType.APPLICATION_JSON)
-							.content("{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
+							.content("""
+{
+           		"title": "First to-do (without id)",
+           		"description": "Description",
+           		"status": "OPEN"
+           		
+           }
+           """))
 					.andExpect(status().isOk()).andDo(content -> System.out.println(content.getResponse().getContentAsString()))
-					.andExpect(content().json(	"{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
+					.andExpect(content().json(	"""
+{
+           		"title": "First to-do (without id)",
+           		"description": "Description",
+           		"status": "OPEN"
+           		
+           }
+           """))
 					.andExpect(jsonPath("$.id").isNotEmpty());
 		}
 	}

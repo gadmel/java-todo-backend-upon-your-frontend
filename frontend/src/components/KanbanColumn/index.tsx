@@ -1,19 +1,22 @@
-import { Task, TaskProps } from '../Task'
-import React from 'react'
+import { Task, TaskType } from '../Task'
+import React, { Dispatch, SetStateAction } from 'react'
 
 export type KanbanColumnProps = {
 	column: { slug: string; label: string }
-	tasks: TaskProps[]
+	tasks: TaskType[]
+	advanceTask: (task: TaskType) => Dispatch<SetStateAction<TaskType>> | void
 }
 
-function KanbanColumn(Props: KanbanColumnProps) {
+function KanbanColumn(props: KanbanColumnProps) {
 	return (
 		<div className="kanban__column">
-			<div className="kanban__column--title">{Props.column.label}</div>
+			<div className="kanban__column--title">{props.column.label}</div>
 			<div className="kanban__column--tasks">
-				{Props.tasks.map((todo: TaskProps) => {
-					if (todo.status === Props.column.slug) {
-						return <Task todo={todo} />
+				{props.tasks.map((todo: TaskType) => {
+					if (todo.status === props.column.slug) {
+						return (
+							<Task key={todo.id} todo={todo} advanceTask={props.advanceTask} />
+						)
 					}
 				})}
 			</div>

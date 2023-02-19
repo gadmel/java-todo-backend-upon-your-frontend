@@ -1,18 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { KanbanColumn } from '../KanbanColumn'
-import { TaskProps } from '../Task'
 import { AddTaskForm } from '../AddTaskForm'
 
-function App() {
-	let kanbanColumns = [
-		{ slug: 'OPEN', label: 'To Do' },
-		{ slug: 'IN_PROGRESS', label: 'In Progress' },
-		{ slug: 'DONE', label: 'Done' },
-	]
+import useKanbanApi from '../../hooks/useKanbanApi'
 
-	const [todos, setTodos] = useState<TaskProps[]>([
-		{ id: '1', title: 'test', description: 'test', status: 'OPEN' },
-	])
+function App() {
+	const { todos, kanbanColumns, addTask, advanceTask, loading } = useKanbanApi()
 
 	return (
 		<div id="app">
@@ -21,13 +14,13 @@ function App() {
 			</header>
 
 			<main className="kanban">
-				{kanbanColumns.map(column => {
-					return KanbanColumn({ column, tasks: todos })
+				{kanbanColumns?.map(column => {
+					return KanbanColumn({ column, tasks: todos, advanceTask })
 				})}
 			</main>
 
 			<footer className="footer">
-				<AddTaskForm onSubmit={() => {}} />
+				<AddTaskForm addTask={addTask} />
 			</footer>
 		</div>
 	)

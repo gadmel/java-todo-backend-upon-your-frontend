@@ -32,11 +32,11 @@ class TodoServiceTest {
 
 	@BeforeEach
 	void setUpTesting() {
-		todoWithoutId_1 = new Todo( "First to-do (without id)", Status.OPEN);
-		todoWithoutId_2 = new Todo("Second to-do (without id)", Status.OPEN);
-		todoWithId_1 = new Todo( "Third to-do (with id)", Status.OPEN);
+		todoWithoutId_1 = new Todo( "First to-do (without id)", "Description", Status.OPEN);
+		todoWithoutId_2 = new Todo("Second to-do (without id)",  "Description", Status.OPEN);
+		todoWithId_1 = new Todo( "Third to-do (with id)","Description", Status.OPEN);
 		todoWithId_1.attachId(id1);
-		todoWithId_2 = new Todo( "Fourth to-do (with id)", Status.OPEN);
+		todoWithId_2 = new Todo( "Fourth to-do (with id)","Description", Status.OPEN);
 		todoWithId_2.attachId(id2);
 		todoRepo = mock(TodoRepo.class);
 		randomService = mock(RandomService.class);
