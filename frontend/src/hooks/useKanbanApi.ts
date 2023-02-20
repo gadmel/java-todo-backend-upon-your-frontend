@@ -25,7 +25,7 @@ function useKanbanApi() {
 
 	function addTask(task: TaskType) {
 		setLoading(true)
-		taskApiService.post(todos, setTodos, task).finally(() => {
+		taskApiService.post(setTodos, task).finally(() => {
 			setLoading(false)
 		})
 	}
@@ -33,14 +33,14 @@ function useKanbanApi() {
 	function advanceTask(task: TaskType) {
 		setLoading(true)
 		const updatedTask = taskService.advance(task)
-		taskApiService.put(todos, setTodos, updatedTask).finally(() => {
+		taskApiService.put(setTodos, updatedTask).finally(() => {
 			setLoading(false)
 		})
 	}
 
 	function editTask(task: TaskType) {
 		setLoading(true)
-		taskApiService.put(todos, setTodos, task).finally(() => {
+		taskApiService.put(setTodos, task).finally(() => {
 			setLoading(false)
 		})
 	}
