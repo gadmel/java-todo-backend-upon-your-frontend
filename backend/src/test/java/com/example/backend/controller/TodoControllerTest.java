@@ -128,7 +128,7 @@ class TodoControllerTest {
            }
            """
 				)).andExpect(status().isOk())
-					.andExpect(content().json(	"{\"description\": \"First to-do (without id)\", \"status\": \"OPEN\"}"))
+					.andExpect(content().json(	"{\"title\": \"First to-do (without id)\", \"description\": \"Description\", \"status\": \"OPEN\"}"))
 					.andExpect(jsonPath("$.id").isNotEmpty());
 		}
 	}
