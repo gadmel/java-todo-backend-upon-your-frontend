@@ -9,7 +9,11 @@ export default {
 }
 
 const apiUrlSlug = '/api/todo'
-function get(setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>) {
+
+type getType = {
+	setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>
+}
+function get({ setTodos }: getType) {
 	return axios
 		.get(apiUrlSlug)
 		.then(response => {
@@ -20,11 +24,12 @@ function get(setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>) {
 		})
 }
 
-function post(
-	todos: TaskType[],
-	setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>,
+type postType = {
+	todos: TaskType[]
+	setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>
 	task: TaskType
-) {
+}
+function post({ todos, setTodos, task }: postType) {
 	return axios
 		.post(apiUrlSlug, task)
 		.then(response => {
@@ -35,11 +40,12 @@ function post(
 		})
 }
 
-function put(
-	todos: TaskType[],
-	setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>,
+type putType = {
+	todos: TaskType[]
+	setTodos: React.Dispatch<React.SetStateAction<TaskType[]>>
 	updatedTask: TaskType
-) {
+}
+function put({ todos, setTodos, updatedTask }: putType) {
 	return axios
 		.put(`${apiUrlSlug}/${updatedTask.id}`, updatedTask)
 		.then(response => {
